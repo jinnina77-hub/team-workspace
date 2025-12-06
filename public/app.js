@@ -1,5 +1,12 @@
-// Socket.IO 연결
-const socket = io();
+// Socket.IO 연결 (안정화 설정)
+const socket = io({
+    reconnection: true,
+    reconnectionAttempts: 10,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    timeout: 20000,
+    transports: ['websocket', 'polling']
+});
 
 // DOM 요소
 const loginModal = document.getElementById('login-modal');

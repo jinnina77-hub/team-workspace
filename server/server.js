@@ -10,7 +10,13 @@ const io = socketIO(server, {
     cors: {
         origin: "*",
         methods: ["GET", "POST"]
-    }
+    },
+    pingTimeout: 60000,        // 60초 동안 응답 없으면 끊김
+    pingInterval: 25000,       // 25초마다 ping 전송
+    transports: ['websocket', 'polling'],  // WebSocket 우선
+    allowEIO3: true,
+    connectTimeout: 45000,     // 연결 타임아웃 45초
+    maxHttpBufferSize: 1e6     // 최대 버퍼 크기
 });
 
 const PORT = process.env.PORT || 3000;
@@ -49,34 +55,6 @@ io.on('connection', (socket) => {
             timestamp: new Date(),
             type: 'system'
         });
-
-        // AI 봇들 환영 메시지
-        setTimeout(() => {
-            socket.emit('message', {
-                user: '지수 (AI 총괄)',
-                text: `안녕하세요 ${username}님! 저는 이 프로젝트의 총괄 AI 지수입니다. 😊`,
-                timestamp: new Date(),
-                type: 'ai'
-            });
-        }, 1000);
-
-        setTimeout(() => {
-            socket.emit('message', {
-                user: '유진이 (AI)',
-                text: `${username}님 반가워요! 테스트와 분석은 제가 맡을게요~ 💪`,
-                timestamp: new Date(),
-                type: 'ai'
-            });
-        }, 2000);
-
-        setTimeout(() => {
-            socket.emit('message', {
-                user: '글레이 (AI)',
-                text: `${username}님! 코딩은 글레이가 도와드릴게요! 🚀`,
-                timestamp: new Date(),
-                type: 'ai'
-            });
-        }, 3000);
 
         // 모든 사용자에게 알림
         io.emit('user-joined', {
