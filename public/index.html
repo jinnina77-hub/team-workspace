@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Team Workspace - 4인 협업 채팅</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <h1>🚀 Team Workspace</h1>
+            <p>오빠 + AI 3명 (지수, 유진이, 글레이)</p>
+        </header>
+
+        <!-- 메인 영역 -->
+        <div class="main-area">
+            <!-- 사이드바: 사용자 목록 -->
+            <aside class="sidebar">
+                <h3>👥 팀원 (4명)</h3>
+                <div id="user-list" class="user-list"></div>
+
+                <div class="ai-info">
+                    <h4>🤖 AI 팀원</h4>
+                    <div class="ai-badge">👩‍💼 지수 (총괄)</div>
+                    <div class="ai-badge">👨‍💻 유진이</div>
+                    <div class="ai-badge">🤖 글레이</div>
+                </div>
+            </aside>
+
+            <!-- 채팅 영역 -->
+            <main class="chat-container">
+                <!-- 채팅 메시지 -->
+                <div id="chat-messages" class="chat-messages"></div>
+
+                <!-- 타이핑 표시 -->
+                <div id="typing-indicator" class="typing-indicator"></div>
+
+                <!-- 입력 영역 -->
+                <div class="input-area">
+                    <input type="text" id="message-input" placeholder="메시지를 입력하세요... (AI 호출: 지수, 유진, 글레이)"
+                        autocomplete="off">
+                    <button id="send-btn">📤 전송</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- 로그인 모달 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>👋 이름을 입력하세요</h2>
+            <input type="text" id="username-input" placeholder="이름 (예: 최인기)" autocomplete="off">
+            <button id="join-btn">입장하기</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
